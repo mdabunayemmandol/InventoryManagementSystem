@@ -10,6 +10,7 @@ namespace InventoryManagementApp.Controllers
     public class CategoryController : Controller
     {
         // GET: Category
+
         public ActionResult CategoryCreate()
         {
             var isActive = new CategoryViewModel() { IsActive = true };

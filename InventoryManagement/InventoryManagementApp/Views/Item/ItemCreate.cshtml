@@ -1,0 +1,98 @@
+﻿@model App.Core.ViewModel.SetupModule.ItemViewModel
+@{
+    ViewBag.Title = "ItemCreate";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-12 col-sm-12">
+        <div class="panel panel-primary">
+            <div class="panel-heading">Item Setup</div>
+            <div class="panel-body">
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.CategoryId, "Category *", htmlAttributes: new { @class = "control-label" })
+                            @Html.DropDownListFor(c => c.CategoryId, null, "", htmlAttributes: new { @class = "form-control"})
+                            @Html.ValidationMessageFor(model => model.CategoryId, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.ItemsName, "ItemsName*", htmlAttributes: new { @class = "control-label" })
+                            @Html.EditorFor(model => model.ItemsName, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.ItemsName, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.PurchasePrice, "PurchasePrice", htmlAttributes: new { @class = "control-label" })
+                            @Html.EditorFor(model => model.PurchasePrice, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.PurchasePrice, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Remark, "Remark", htmlAttributes: new { @class = "control-label" })
+                            @Html.EditorFor(model => model.Remark, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Remark, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.SalePrice, "SalePrice", htmlAttributes: new { @class = "control-label" })
+                            @Html.EditorFor(model => model.SalePrice, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.SalePrice, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.UnitId, "Unit *", htmlAttributes: new { @class = "control-label" })
+                            @Html.DropDownListFor(c => c.UnitId, null, "", htmlAttributes: new { @class = "form-control", @tabindex = "22" })
+                            @Html.ValidationMessageFor(model => model.UnitId, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.ReoderLevel, "ReoderLevel", htmlAttributes: new { @class = "control-label" })
+                            @Html.EditorFor(model => model.ReoderLevel, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.ReoderLevel, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.IsActive, "IsActive", htmlAttributes: new { @class = "control-label" })
+                            <div class="checkbox">
+                                @Html.EditorFor(model => model.IsActive)
+                                @Html.ValidationMessageFor(model => model.IsActive, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.HiddenFor(c => c.Id)
+                            <input id="btnSubmit" type="button" value="Submit" class="btn btn-primary" />
+                            <a class="btn btn-primary" href="@Url.Action("UnitCreate","Unit")">Previous</a>
+
+                        </div>
+                    </div>
+
+                }
+            </div>
+        </div>
+        <div class="box box-primary">
+            <div class="heading">Item List</div>
+            <div class="box-body">
+                <table id="itemHistory" class="table table-bordered table-hover display">
+                    <thead>
+                        <tr>
+                            <th>Category</th>
+                            <th>ItemsName</th>
+                            <th>Unit</th>
+                            <th>PurchasePrice</th>
+                            <th>SalePrice</th>
+                            <th>ReoderLevel</th>
+                            <th>Remark</th>
+                            <th>Status</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+@section ViewSpecificJavascript
+{
+   <script src="~/Scripts/FormScript/SetupModule/itemsCreate.js"></script>
+}

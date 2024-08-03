@@ -1,0 +1,133 @@
+﻿@model App.Core.ViewModel.OperationModule.PurchasedetailViewModel
+@{
+    ViewBag.Title = "PurchasedetailCreate";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-12 col-sm-12" id="myForm">
+        <br />
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <div class="box box-primary">
+                <div class="box-header with-border"><h5 class="box-title">Search</h5></div>
+                <div class="box-body">
+                    <div class="col-md-12 col-sm-12">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.PurchasemusterId, "Purchasemuster*", htmlAttributes: new { @class = "control-label" })
+                                    @Html.DropDownListFor(c => c.PurchasemusterId, null, "", htmlAttributes: new { @class = "form-control", @tabindex = "22" })
+                                    @Html.ValidationMessageFor(model => model.PurchasemusterId, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="col-md-6"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.PurchaseNo, "Purchase No", htmlAttributes: new { @class = "control-label" })
+                                    @Html.EditorFor(model => model.PurchaseNo, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.SupplierName, "Supplier Name", htmlAttributes: new { @class = "control-label" })
+                                    @Html.EditorFor(model => model.SupplierName, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="box-header with-border"><h4 class="box-title">Purchasedetails Info</h4></div>
+                            <div class="box-body">
+                                <div class="col-md-6 col-sm-6">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.ItemId, "Item*", htmlAttributes: new { @class = "control-label" })
+                                        @Html.DropDownListFor(c => c.ItemId, null, "", htmlAttributes: new { @class = "form-control", @tabindex = "22" })
+                                        @Html.ValidationMessageFor(model => model.ItemId, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Quantity, "Quantity", htmlAttributes: new { @class = "control-label" })
+                                        @Html.EditorFor(model => model.Quantity, new { htmlAttributes = new { @class = "form-control", @tabindex = "1", } })
+                                        @Html.ValidationMessageFor(model => model.Quantity, "", new { @class = "text-danger", @id = "" })
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Remark, "Remark", htmlAttributes: new { @class = "control-label" })
+                                        @Html.EditorFor(model => model.Remark, new { htmlAttributes = new { @class = "form-control", @tabindex = "4" } })
+                                        @Html.ValidationMessageFor(model => model.Remark, "", new { @class = "text-danger" })
+                                    </div>
+
+
+                                </div>
+                                <div class="col-md-6 col-sm-6">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Price, "Price", htmlAttributes: new { @class = "control-label" })
+                                        @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control", @tabindex = "1", } })
+                                        @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger", @id = "" })
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.TotalPrice, "TotalPrice", htmlAttributes: new { @class = "control-label" })
+                                        @Html.EditorFor(model => model.TotalPrice, new { htmlAttributes = new { @class = "form-control", @tabindex = "1", } })
+                                        @Html.ValidationMessageFor(model => model.TotalPrice, "", new { @class = "text-danger", @id = "" })
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            @Html.AntiForgeryToken()
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    @Html.HiddenFor(c => c.Id)
+                                    @Html.HiddenFor(c => c.PurchasemusterId)
+                                    <div class="form-group col-md-2 col-sm-2">
+                                        <input type="button" id="btnSubmit" value="SAVE" class="btn btn-primary btn-block" tabindex="24" />
+                                    </div>
+                                    <div class="form-group col-md-2 col-sm-2">
+                                        <input type="button" id="btnRefresh" value="CLEAR" class="btn btn-primary btn-block" />
+                                    </div>
+                                    @*<div class="form-group col-md-2 col-sm-2">
+                                            <input type="button" id="btnPrevious" value="Previous" class="btn btn-primary btn-block" />
+                                        </div>
+                                        <div class="form-group col-md-2 col-sm-2">
+                                            <input type="button" id="btnNext" value="Next" class="btn btn-primary btn-block" />
+                                        </div>*@
+                                    <div class="form-group col-md-2 col-sm-2">
+                                        <input type="hidden" id="pageNumber" />
+                                        <input type="hidden" id="personalId" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
+        <div class="box box-info">
+            <div class="box-header"><h5 class="box-title">Purchasedetails List</h5></div>
+            <div class="box-body">
+                <table id="purchasedetailHistory" class="table table-bordered table-hover display nowrap" style="width: 100%">
+                    <thead>
+                        <tr>
+                            <th style="text-align: center">Category</th>
+                            <th style="text-align: center">Item</th>
+                            <th style="text-align: center">Price</th>
+                            <th style="text-align: center">Quantity</th>
+                            <th style="text-align: center">TotalPrice</th>
+                            <th style="text-align: center">Remark</th>
+                            <th style="text-align: center"></th>
+                            <th style="text-align: center"></th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section ViewSpecificJavascript
+{
+    <script src="~/Scripts/FormScript/OperationModule/purchasedetailCreate.js"></script>
+}

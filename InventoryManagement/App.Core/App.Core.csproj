@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{676EA449-4DAE-4263-A1DE-2580443EEECF}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>App.Core</RootNamespace>
+    <AssemblyName>App.Core</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper, Version=7.0.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.7.0.1\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AutoMapperConfigurations\AutoMapperConfiguration.cs" />
+    <Compile Include="AutoMapperConfigurations\MappingsProfile.cs" />
+    <Compile Include="CommonModel\BaseDomain.cs" />
+    <Compile Include="CommonModel\DateTimeFormatter.cs" />
+    <Compile Include="Dtos\Invoices\InvoiceDetailsDto.cs" />
+    <Compile Include="Dtos\Invoices\InvoiceDto.cs" />
+    <Compile Include="Dtos\Invoices\PurchasemstDetailsDto.cs" />
+    <Compile Include="Dtos\Invoices\PurchasemstDto.cs" />
+    <Compile Include="Model\OperationModule\Purchasedetail.cs" />
+    <Compile Include="Model\OperationModule\Purchasemst.cs" />
+    <Compile Include="Model\OperationModule\PurchasemstDetails.cs" />
+    <Compile Include="Model\OperationModule\Purchasemuster.cs" />
+    <Compile Include="Model\OperationModule\Sale.cs" />
+    <Compile Include="Model\OperationModule\Salesdetail.cs" />
+    <Compile Include="Model\OperationModule\StockHistory.cs" />
+    <Compile Include="Model\SetupModule\Category.cs" />
+    <Compile Include="Model\SetupModule\Customer.cs" />
+    <Compile Include="Model\SetupModule\Invoice.cs" />
+    <Compile Include="Model\SetupModule\InvoiceDetails.cs" />
+    <Compile Include="Model\SetupModule\Item.cs" />
+    <Compile Include="Model\SetupModule\Supplier.cs" />
+    <Compile Include="Model\SetupModule\Unit.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReportModel\DashBoardModel.cs" />
+    <Compile Include="ReportModel\PurchasedetailReportModel.cs" />
+    <Compile Include="ReportModel\PurchaseReportModel.cs" />
+    <Compile Include="ReportModel\SaleDetailsReportModel.cs" />
+    <Compile Include="ReportModel\SaleReportModel.cs" />
+    <Compile Include="ReportModel\StockHistoryReportModel.cs" />
+    <Compile Include="ViewModel\Invoices\InvoiceDettailsViewModel.cs" />
+    <Compile Include="ViewModel\Invoices\InvoiceViewModel.cs" />
+    <Compile Include="ViewModel\Invoices\PurchasemstDetailsViewModel.cs" />
+    <Compile Include="ViewModel\Invoices\PurchasemstViewModel.cs" />
+    <Compile Include="ViewModel\Invoices\Report\InvoiceDetails.cs" />
+    <Compile Include="ViewModel\OperationModule\PurchasedetailViewModel.cs" />
+    <Compile Include="ViewModel\OperationModule\PurchasemusterViewModel.cs" />
+    <Compile Include="ViewModel\OperationModule\SalesdetailViewModel.cs" />
+    <Compile Include="ViewModel\OperationModule\SaleViewModel.cs" />
+    <Compile Include="ViewModel\SetupModule\CategoryViewModel.cs" />
+    <Compile Include="ViewModel\SetupModule\CustomerViewModel.cs" />
+    <Compile Include="ViewModel\SetupModule\ItemViewModel.cs" />
+    <Compile Include="ViewModel\SetupModule\SupplierViewModel.cs" />
+    <Compile Include="ViewModel\SetupModule\UnitViewModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Model\ReportModule\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

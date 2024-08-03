@@ -1,0 +1,83 @@
+﻿@model App.Core.ViewModel.SetupModule.SupplierViewModel
+@{
+    ViewBag.Title = "SuppliersCreate";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-8 col-sm-8 col-md-offset-2 col-sm-offset-2">
+        <div class="panel panel-primary">
+            <div class="panel-heading">Supplier Setup</div>
+            <div class="panel-body">
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.SupplierName, "Name*", htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.SupplierName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.SupplierName, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Address, "Address*", htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Mobile, "Mobile", htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.Mobile, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Mobile, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Email, "Email", htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Remark, "Remark", htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.Remark, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Remark, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.IsActive, "IsActive", htmlAttributes: new { @class = "control-label" })
+                        <div class="checkbox">
+                            @Html.EditorFor(model => model.IsActive)
+                            @Html.ValidationMessageFor(model => model.IsActive, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.HiddenFor(c => c.Id)
+                        <input id="btnSubmit" type="button" value="Submit" class="btn btn-primary" />
+                        <a class="btn btn-primary" href="@Url.Action("CategoryCreate","Category")">Previous</a>
+                        <a class="btn btn-primary" href="@Url.Action("CustomersCreate","Customers")">Next</a>
+
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="box box-primary">
+            <div class="heading">Supplier List</div>
+            <div class="box-body">
+                <table id="supplierHistory" class="table table-bordered table-hover display">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Address</th>
+                            <th>Mobile</th>
+                            <th>Email</th>
+                           <th>Status</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section ViewSpecificJavascript
+{
+    <script src="~/Scripts/FormScript/SetupModule/suppliersCreate.js"></script>
+}

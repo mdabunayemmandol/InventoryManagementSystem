@@ -1,0 +1,61 @@
+﻿
+@{
+    ViewBag.Title = "Report";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/jquery.fancybox.css" rel="stylesheet" />
+
+<div class="panel panel-danger">
+    <div class="panel-heading">Report</div>
+    <div class="panel-body">
+        <input id="btnReports" type="button" value="Submit" class="btn btn-primary" />
+        <input type="hidden" id="pdf" />
+
+
+    </div>
+</div>
+
+
+
+@section ViewSpecificJavascript
+{
+
+    <script src="~/Scripts/jquery.fancybox.js"></script>
+    <script>
+
+        $(document.body).on("click",
+            "#btnReports",
+            function () {
+                $.ajax({
+                    url: "/StockReports/GetReport",
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+                        if (data != "" && data != null) {
+                            setTimeout(function () {
+                                $("#pdf").attr("href", data);
+                                var reportBox = $("#pdf").fancybox({
+                                    'frameWidth': 85,
+                                    'frameHeight': 495,
+                                    'overlayShow': true,
+                                    'hideOnContentClick': false,
+                                    'type': 'iframe',
+                                    helpers: {
+                                        // prevents closing when clicking OUTSIDE fancybox
+                                        overlay: { closeClick: false }
+                                    }
+                                }).trigger('click');
+                            }, 1000);
+                        }
+                    }
+                });
+
+
+            });
+
+    </script>
+
+
+
+}
+

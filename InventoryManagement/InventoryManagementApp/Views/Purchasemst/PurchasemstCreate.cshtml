@@ -1,0 +1,166 @@
+﻿@model App.Core.ViewModel.Invoices.PurchasemstViewModel
+@{
+    ViewBag.Title = "PurchasemstCreate";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+    <div class="col-md-12 col-sm-12">
+        <div class="panel panel-info">
+            <div class="panel-heading">PurchaseMst Create</div>
+            <div class="panel-body">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken();
+
+                        
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.SupplierId, "Supplier", htmlAttributes: new { @class = "control-label" })
+                                    @Html.DropDownListFor(c => c.SupplierId, null, "", htmlAttributes: new { @class = "form-control", @tabindex = "22" })
+                                    @Html.ValidationMessageFor(model => model.SupplierId, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.PurchaseDate, "Purchase Date", htmlAttributes: new { @class = "control-label" })
+                                    <div class="input-group date">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </div>
+                                        @Html.EditorFor(model => model.PurchaseDate, new { htmlAttributes = new { @class = "form-control datepicker" } })
+                                    </div>
+                                    @Html.ValidationMessageFor(model => model.PurchaseDate, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" id="customerHideSHow">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.SupplierName, "Name", htmlAttributes: new { @class = "control-label" })
+                                    @Html.EditorFor(model => model.SupplierName, new { htmlAttributes = new { @class = "form-control", @id = "SearchName", @disabled = "disabled" } })
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.PhoneNumber, "Phone No", htmlAttributes: new { @class = "control-label" })
+                                    @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control", @id = "SearchPhoneNo", @disabled = "disabled" } })
+                                </div>
+                            </div>
+                        </div>
+                        <hr />
+                        <br />
+                        <div class="row">
+                            <div class="panel panel-info">
+                                <div class="panel-body">
+
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label class="control-label">Item</label>
+                                            <select id="ItemId" class="form-control show-tick"></select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label class="control-label">Unit Price</label>
+                                            <input id="Price" class="form-control" type="text" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label class="control-label">Quantity</label>
+                                            <input id="Weight" class="form-control" type="text" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label class="control-label">Total Price</label>
+                                            <input id="UnitPrice" class="form-control" type="text" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <div class="form-group">
+                                            <br />
+                                            <input type="hidden" id="dtlRowHiden" />
+                                            <input type="hidden" id="dtlIdHiden" value="0" />
+                                            <input id="btnAdd" class="btn btn-sm btn-primary" type="button" style="margin-top: 6px;" value="Add" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <br />
+                                <hr />
+                                <div class="row col-md-12">
+                                    <div class="form-group">
+                                        <table id="dtlTable" class="table table-bordered table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th>rowNumber</th>
+                                                    <th>dtlId</th>
+                                                    <th>productId</th>
+                                                    <th>Item Name</th>
+                                                    <th>Quantity</th>
+                                                    <th>Unit Price</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody></tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+                        <hr />
+                        <div class="row">
+                            <div class="panel panel-info">
+                                <div class="panel-body">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.PurchasemstNo, "Purchasemst No", htmlAttributes: new { @class = "control-label" })
+                                            @Html.EditorFor(model => model.PurchasemstNo, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                                        </div>
+
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.PayAble, "Payable", htmlAttributes: new { @class = "control-label" })
+                                            @Html.EditorFor(model => model.PayAble, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                                        </div>
+
+
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.TotalBill, "Total Bill", htmlAttributes: new { @class = "control-label" })
+                                            @Html.EditorFor(model => model.TotalBill, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+
+                                        </div>
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.PayAmount, "Pay Amount", htmlAttributes: new { @class = "control-label" })
+                                            @Html.EditorFor(model => model.PayAmount, new { htmlAttributes = new { @class = "form-control" } })
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.TransportCost, "Transport Cost", htmlAttributes: new { @class = "control-label" })
+                                            @Html.EditorFor(model => model.TransportCost, new { htmlAttributes = new { @class = "form-control" } })
+                                        </div>
+                                        <div class="form-group">
+                                            <input id="btnSubmit" class="btn btn-primary" type="button" style="margin-top: 24px;" value="Submit" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+@section ViewSpecificJavascript
+{
+    <script src="~/Content/js/sum().js"></script>
+    <script src="~/Scripts/FormScript/OperationModule/purchasemstCreate.js"></script>
+}
